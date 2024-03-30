@@ -122,6 +122,7 @@ def analyze_chat(file_stream):
 
     # Extract unique authors from the DataFrame
     author_list = df['Author'].unique().tolist()
+    author_list = list(filter(None, author_list))
 
     # Most used words per author
     words_data = df[df['MessageType'] == 'Chat'].groupby('Author')['Message'].apply(lambda x: most_used_words(x)).to_dict()
